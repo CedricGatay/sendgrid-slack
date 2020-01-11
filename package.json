@@ -6,7 +6,7 @@
     "coffee-script": "^1.7.1",
     "express": "~4.4.5",
     "morgan": "~1.1.1",
-    "node-slack": "0.0.5"
+    "node-slack": "0.0.7"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

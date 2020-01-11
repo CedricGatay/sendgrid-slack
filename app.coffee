@@ -9,13 +9,16 @@ app.use logger("dev")
 app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: true)
 
-if process.env.SLACK_DOMAIN == undefined || process.env.SLACK_TOKEN == undefined
-  throw "SLACK_DOMAIN and SLACK_TOKEN must be defined"
+if process.env.SLACK_URL == undefined
+  throw "SLACK_URL must be defined"
 
 Slack = require('node-slack')
-slack = new Slack(process.env.SLACK_DOMAIN, process.env.SLACK_TOKEN)
+slack = new Slack(process.env.SLACK_URL)
 
 app.post '/', (req, res) ->
+  if process.env.DEBUG
+    console.log(req.body)
+
   for event in req.body
     slack.send
       text: event.event + " event for: " + event.email,
